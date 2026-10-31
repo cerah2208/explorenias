@@ -1,0 +1,1715 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ExploreNias - Wisata Kepulauan Nias</title>
+
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #0d6efd, #084298);
+        }
+
+        .card-destinasi {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+
+        .card-destinasi:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15) !important;
+        }
+
+        .card-destinasi img {
+            height: 190px;
+            object-fit: cover;
+        }
+
+        .wilayah-title {
+            border-left: 5px solid #0d6efd;
+            padding-left: 12px;
+        }
+
+        #pesanHasil {
+            min-height: 24px;
+        }
+
+        footer a:hover {
+            color: #ffc107 !important;
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow sticky-top">
+    <div class="container">
+
+        <a class="navbar-brand fw-bold fs-4" href="#beranda">
+            ExploreNias
+        </a>
+
+        <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#menuNavbar"
+            aria-controls="menuNavbar" aria-expanded="false"
+            aria-label="Buka navigasi">
+
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="menuNavbar">
+
+            <ul class="navbar-nav ms-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="#beranda">Beranda</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#destinasi">Destinasi</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#kategori">Kategori</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#wilayah">Wilayah</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#tentang">Tentang</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#kontak">Kontak</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<!-- BERANDA -->
+<section id="beranda" class="hero-section text-white py-5">
+
+    <div class="container py-5">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-8">
+
+                <span class="badge bg-warning text-dark mb-3">
+                    SUMATERA UTARA, INDONESIA
+                </span>
+
+                <h1 class="display-3 fw-bold">
+                    Jelajahi Keindahan Kepulauan Nias
+                </h1>
+
+                <p class="lead my-4">
+                    Temukan destinasi wisata terbaik, keindahan alam,
+                    budaya, dan sejarah yang tersembunyi di Kepulauan Nias.
+                </p>
+
+                <a href="#destinasi"
+                    class="btn btn-warning btn-lg fw-semibold me-2">
+                    Jelajahi Destinasi
+                </a>
+
+                <a href="#tentang" class="btn btn-outline-light btn-lg">
+                    Tentang Kami
+                </a>
+
+            </div>
+        </div>
+
+
+        <!-- FORM PENCARIAN -->
+        <div class="bg-white text-dark rounded-4 shadow p-4 mt-5">
+
+            <form id="formPencarian">
+
+                <div class="row g-3 align-items-end">
+
+                    <div class="col-lg-5">
+
+                        <label class="form-label fw-semibold">
+                            Cari Destinasi
+                        </label>
+
+                        <input type="text"
+                            class="form-control"
+                            id="cariDestinasi"
+                            placeholder="Contoh: Pantai Sorake">
+
+                    </div>
+
+
+                    <div class="col-lg-4">
+
+                        <label class="form-label fw-semibold">
+                            Pilih Wilayah
+                        </label>
+
+                        <select class="form-select" id="filterWilayah">
+
+                            <option value="">Semua Wilayah</option>
+
+                            <option value="Kota Gunungsitoli">
+                                Kota Gunungsitoli
+                            </option>
+
+                            <option value="Kabupaten Nias">
+                                Kabupaten Nias
+                            </option>
+
+                            <option value="Kabupaten Nias Selatan">
+                                Kabupaten Nias Selatan
+                            </option>
+
+                            <option value="Kabupaten Nias Utara">
+                                Kabupaten Nias Utara
+                            </option>
+
+                            <option value="Kabupaten Nias Barat">
+                                Kabupaten Nias Barat
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="col-lg-3">
+
+                        <div class="d-grid gap-2">
+
+                            <button type="submit"
+                                class="btn btn-primary">
+                                Cari Destinasi
+                            </button>
+
+                            <button type="button"
+                                class="btn btn-outline-secondary"
+                                id="resetPencarian">
+                                Reset Pencarian
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- DESTINASI -->
+<section id="destinasi" class="py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="fw-bold">
+                Destinasi Wisata Nias
+            </h2>
+
+            <p class="text-muted">
+                Jelajahi keindahan alam, budaya, dan sejarah Kepulauan Nias.
+            </p>
+
+            <span class="badge bg-primary" id="jumlahDestinasi">
+                32 Destinasi Wisata
+            </span>
+
+            <div id="pesanHasil" class="mt-3"></div>
+
+        </div>
+
+
+        <!-- KOTA GUNUNGSITOLI -->
+        <div class="mb-5 bagian-wilayah">
+
+            <h3 class="fw-bold mb-3 wilayah-title">
+                Kota Gunungsitoli
+            </h3>
+
+            <div class="row g-4">
+
+
+                <!-- 1 -->
+                <div class="col-md-4 col-lg-3 item-destinasi"
+                    data-nama="Pantai Laowomaru"
+                    data-wilayah="Kota Gunungsitoli">
+
+                    <div class="card card-destinasi h-100 shadow-sm">
+
+                        <img src="images/wisata/Laowomaru.jpg"
+                            class="card-img-top"
+                            alt="Pantai Laowomaru">
+
+                        <div class="card-body">
+
+                            <span class="badge bg-info mb-2">Pantai</span>
+
+                            <h5 class="card-title">Pantai Laowomaru</h5>
+
+                            <p class="card-text text-muted">
+                                Kota Gunungsitoli
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 2 -->
+                <div class="col-md-4 col-lg-3 item-destinasi"
+                    data-nama="Pantai Hoya"
+                    data-wilayah="Kota Gunungsitoli">
+
+                    <div class="card card-destinasi h-100 shadow-sm">
+
+                        <img src="images/wisata/hoya.jpg"
+                            class="card-img-top" alt="Pantai Hoya">
+
+                        <div class="card-body">
+
+                            <span class="badge bg-info mb-2">Pantai</span>
+
+                            <h5>Pantai Hoya</h5>
+
+                            <p class="text-muted">Kota Gunungsitoli</p>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 3 -->
+                <div class="col-md-4 col-lg-3 item-destinasi"
+                    data-nama="Air Terjun Humogo"
+                    data-wilayah="Kota Gunungsitoli">
+
+                    <div class="card card-destinasi h-100 shadow-sm">
+
+                        <img src="images/wisata/humogo.jpg"
+                            class="card-img-top" alt="Air Terjun Humogo">
+
+                        <div class="card-body">
+
+                            <span class="badge bg-success mb-2">Alam</span>
+
+                            <h5>Air Terjun Humogo</h5>
+
+                            <p class="text-muted">Kota Gunungsitoli</p>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 4 -->
+                <div class="col-md-4 col-lg-3 item-destinasi"
+                    data-nama="Gua Togi Ndrawa"
+                    data-wilayah="Kota Gunungsitoli">
+
+                    <div class="card card-destinasi h-100 shadow-sm">
+
+                        <img src="images/wisata/drawa.jpg"
+                            class="card-img-top" alt="Gua Togi Ndrawa">
+
+                        <div class="card-body">
+
+                            <span class="badge bg-success mb-2">Alam</span>
+
+                            <h5>Gua Togi Ndrawa</h5>
+
+                            <p class="text-muted">Kota Gunungsitoli</p>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 5 -->
+                <div class="col-md-4 col-lg-3 item-destinasi"
+                    data-nama="Museum Pusaka Nias"
+                    data-wilayah="Kota Gunungsitoli">
+
+                    <div class="card card-destinasi h-100 shadow-sm">
+
+                        <img src="images/wisata/museum.jpg"
+                            class="card-img-top" alt="Museum Pusaka Nias">
+
+                        <div class="card-body">
+
+                            <span class="badge bg-warning text-dark mb-2">Budaya</span>
+
+                            <h5>Museum Pusaka Nias</h5>
+
+                            <p class="text-muted">Kota Gunungsitoli</p>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 6 -->
+                <div class="col-md-4 col-lg-3 item-destinasi"
+                    data-nama="Desa Wisata Tumori"
+                    data-wilayah="Kota Gunungsitoli">
+
+                    <div class="card card-destinasi h-100 shadow-sm">
+
+                        <img src="images/wisata/tumori.jpg"
+                            class="card-img-top" alt="Desa Wisata Tumori">
+
+                        <div class="card-body">
+
+                            <span class="badge bg-warning text-dark mb-2">Budaya</span>
+
+                            <h5>Desa Wisata Tumöri</h5>
+
+                            <p class="text-muted">Kota Gunungsitoli</p>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 7 -->
+                <div class="col-md-4 col-lg-3 item-destinasi"
+                    data-nama="Pantai Foa"
+                    data-wilayah="Kota Gunungsitoli">
+
+                    <div class="card card-destinasi h-100 shadow-sm">
+
+                        <img src="images/wisata/foa.jpg"
+                            class="card-img-top" alt="Pantai Foa">
+
+                        <div class="card-body">
+
+                            <span class="badge bg-success mb-2">Alam</span>
+
+                            <h5>Pantai Foa</h5>
+
+                            <p class="text-muted">Kota Gunungsitoli</p>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 8 -->
+                <div class="col-md-4 col-lg-3 item-destinasi"
+                    data-nama="Pantai Nusa Lima"
+                    data-wilayah="Kota Gunungsitoli">
+
+                    <div class="card card-destinasi h-100 shadow-sm">
+
+                        <img src="images/wisata/nusalima.jpg"
+                            class="card-img-top" alt="Pantai Nusa Lima">
+
+                        <div class="card-body">
+
+                            <span class="badge bg-info mb-2">Pantai</span>
+
+                            <h5>Pantai Nusa Lima</h5>
+
+                            <p class="text-muted">Kota Gunungsitoli</p>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 9 -->
+                <div class="col-md-4 col-lg-3 item-destinasi"
+                    data-nama="Desa Wisata Ononamolo I Lot"
+                    data-wilayah="Kota Gunungsitoli">
+
+                    <div class="card card-destinasi h-100 shadow-sm">
+
+                        <img src="images/wisata/ononamolo.jpg"
+                            class="card-img-top" alt="Desa Wisata Ononamolo I Lot">
+
+                        <div class="card-body">
+
+                            <span class="badge bg-warning text-dark mb-2">Budaya</span>
+
+                            <h5>Desa Wisata Ononamölö I Lot</h5>
+
+                            <p class="text-muted">Kota Gunungsitoli</p>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 10 -->
+                <div class="col-md-4 col-lg-3 item-destinasi"
+                    data-nama="Pantai Hiligodu"
+                    data-wilayah="Kota Gunungsitoli">
+
+                    <div class="card card-destinasi h-100 shadow-sm">
+
+                        <img src="images/wisata/Hiligodu.jpg"
+                            class="card-img-top" alt="Pantai Hiligodu">
+
+                        <div class="card-body">
+
+                            <span class="badge bg-success mb-2">Alam</span>
+
+                            <h5>Pantai Hiligodu</h5>
+
+                            <p class="text-muted">Kota Gunungsitoli</p>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 11 -->
+                <div class="col-md-4 col-lg-3 item-destinasi"
+                    data-nama="Desa Wisata Sifalaete"
+                    data-wilayah="Kota Gunungsitoli">
+
+                    <div class="card card-destinasi h-100 shadow-sm">
+
+                        <img src="images/wisata/Sifalaete.jpg"
+                            class="card-img-top" alt="Desa Wisata Sifalaete">
+
+                        <div class="card-body">
+
+                            <span class="badge bg-warning text-dark mb-2">Budaya</span>
+
+                            <h5>Desa Wisata Sifalaete</h5>
+
+                            <p class="text-muted">Kota Gunungsitoli</p>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- KABUPATEN NIAS -->
+        <div class="mb-5 bagian-wilayah">
+
+            <h3 class="fw-bold mb-3 wilayah-title">
+                Kabupaten Nias
+            </h3>
+
+            <div class="row g-4">
+
+
+                <!-- 12 -->
+                <div class="col-md-4 col-lg-3 item-destinasi"
+                    data-nama="Desa Wisata Orahili Fau"
+                    data-wilayah="Kabupaten Nias">
+
+                    <div class="card card-destinasi h-100 shadow-sm">
+
+                        <img src="images/wisata/fau.jpg"
+                            class="card-img-top" alt="Desa Wisata Orahili Fau">
+
+                        <div class="card-body">
+
+                            <span class="badge bg-warning text-dark mb-2">Budaya</span>
+
+                            <h5>Desa Wisata Orahili Fau</h5>
+
+                            <p class="text-muted">Kabupaten Nias</p>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 13 -->
+                <div class="col-md-4 col-lg-3 item-destinasi"
+                    data-nama="Situs Megalitik Tetegewo"
+                    data-wilayah="Kabupaten Nias">
+
+                    <div class="card card-destinasi h-100 shadow-sm">
+
+                        <img src="images/wisata/Tetegewo.jpg"
+                            class="card-img-top" alt="Situs Megalitik Tetegewo">
+
+                        <div class="card-body">
+
+                            <span class="badge bg-secondary mb-2">Sejarah</span>
+
+                            <h5>Situs Megalitik Tetegewo</h5>
+
+                            <p class="text-muted">Kabupaten Nias</p>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 14 -->
+                <div class="col-md-4 col-lg-3 item-destinasi"
+                    data-nama="Pantai Bozihona"
+                    data-wilayah="Kabupaten Nias">
+
+                    <div class="card card-destinasi h-100 shadow-sm">
+
+                        <img src="images/wisata/bozihona.jpg"
+                            class="card-img-top" alt="Pantai Bozihona">
+
+                        <div class="card-body">
+
+                            <span class="badge bg-info mb-2">Pantai</span>
+
+                            <h5>Pantai Bozihona</h5>
+
+                            <p class="text-muted">Kabupaten Nias</p>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 15 -->
+                <div class="col-md-4 col-lg-3 item-destinasi"
+                    data-nama="Pantai Somi"
+                    data-wilayah="Kabupaten Nias">
+
+                    <div class="card card-destinasi h-100 shadow-sm">
+
+                        <img src="images/wisata/somi.jpg"
+                            class="card-img-top" alt="Pantai Somi">
+
+                        <div class="card-body">
+
+                            <span class="badge bg-info mb-2">Pantai</span>
+
+                            <h5>Pantai Somi</h5>
+
+                            <p class="text-muted">Kabupaten Nias</p>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- KABUPATEN NIAS SELATAN -->
+        <div class="mb-5 bagian-wilayah">
+
+            <h3 class="fw-bold mb-3 wilayah-title">
+                Kabupaten Nias Selatan
+            </h3>
+
+            <div class="row g-4">
+
+
+                <!-- 16 -->
+                <div class="col-md-4 col-lg-3 item-destinasi"
+                    data-nama="Pantai Sorake"
+                    data-wilayah="Kabupaten Nias Selatan">
+
+                    <div class="card card-destinasi h-100 shadow-sm">
+
+                        <img src="images/wisata/sorake.jpg"
+                            class="card-img-top" alt="Pantai Sorake">
+
+                        <div class="card-body">
+
+                            <span class="badge bg-info mb-2">Pantai</span>
+
+                            <h5>Pantai Sorake</h5>
+
+                            <p class="text-muted">Kabupaten Nias Selatan</p>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 17 -->
+                <div class="col-md-4 col-lg-3 item-destinasi"
+                    data-nama="Pantai Lagundri"
+                    data-wilayah="Kabupaten Nias Selatan">
+
+                    <div class="card card-destinasi h-100 shadow-sm">
+
+                        <img src="images/wisata/lagundri.jpg"
+                            class="card-img-top" alt="Pantai Lagundri">
+
+                        <div class="card-body">
+
+                            <span class="badge bg-info mb-2">Pantai</span>
+
+                            <h5>Pantai Lagundri</h5>
+
+                            <p class="text-muted">Kabupaten Nias Selatan</p>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 18 -->
+                <div class="col-md-4 col-lg-3 item-destinasi"
+                    data-nama="Desa Adat Bawomataluo"
+                    data-wilayah="Kabupaten Nias Selatan">
+
+                    <div class="card card-destinasi h-100 shadow-sm">
+
+                        <img src="images/wisata/bawomataluo.jpg"
+                            class="card-img-top" alt="Desa Adat Bawomataluo">
+
+                        <div class="card-body">
+
+                            <span class="badge bg-warning text-dark mb-2">Budaya</span>
+
+                            <h5>Desa Adat Bawömataluo</h5>
+
+                            <p class="text-muted">Kabupaten Nias Selatan</p>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 19 -->
+                <div class="col-md-4 col-lg-3 item-destinasi"
+                    data-nama="Pantai Ladeha Amandraya"
+                    data-wilayah="Kabupaten Nias Selatan">
+
+                    <div class="card card-destinasi h-100 shadow-sm">
+
+                        <img src="images/wisata/Amandraya.jpg"
+                            class="card-img-top" alt="Pantai Ladeha Amandraya">
+
+                        <div class="card-body">
+
+                            <span class="badge bg-info mb-2">Pantai</span>
+
+                            <h5>Pantai Ladeha Amandraya</h5>
+
+                            <p class="text-muted">Kabupaten Nias Selatan</p>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 20 -->
+                <div class="col-md-4 col-lg-3 item-destinasi"
+                    data-nama="Pulau Tello"
+                    data-wilayah="Kabupaten Nias Selatan">
+
+                    <div class="card card-destinasi h-100 shadow-sm">
+
+                        <img src="images/wisata/telo.jpg"
+                            class="card-img-top" alt="Pulau Tello">
+
+                        <div class="card-body">
+
+                            <span class="badge bg-success mb-2">Alam</span>
+
+                            <h5>Pulau Tello</h5>
+
+                            <p class="text-muted">Kabupaten Nias Selatan</p>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 21 -->
+                <div class="col-md-4 col-lg-3 item-destinasi"
+                    data-nama="Pantai Hilisataro"
+                    data-wilayah="Kabupaten Nias Selatan">
+
+                    <div class="card card-destinasi h-100 shadow-sm">
+
+                        <img src="images/wisata/hilisatare.jpg"
+                            class="card-img-top" alt="Pantai Hilisataro">
+
+                        <div class="card-body">
+
+                            <span class="badge bg-info mb-2">Pantai</span>
+
+                            <h5>Pantai Hilisataro</h5>
+
+                            <p class="text-muted">Kabupaten Nias Selatan</p>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 22 -->
+                <div class="col-md-4 col-lg-3 item-destinasi"
+                    data-nama="Air Terjun Gumbu Park"
+                    data-wilayah="Kabupaten Nias Selatan">
+
+                    <div class="card card-destinasi h-100 shadow-sm">
+
+                        <img src="images/wisata/gumbu.jpg"
+                            class="card-img-top" alt="Air Terjun Gumbu Park">
+
+                        <div class="card-body">
+
+                            <span class="badge bg-success mb-2">Alam</span>
+
+                            <h5>Air Terjun Gumbu Park</h5>
+
+                            <p class="text-muted">Kabupaten Nias Selatan</p>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- KABUPATEN NIAS UTARA -->
+        <div class="mb-5 bagian-wilayah">
+
+            <h3 class="fw-bold mb-3 wilayah-title">
+                Kabupaten Nias Utara
+            </h3>
+
+            <div class="row g-4">
+
+
+                <!-- 23 -->
+                <div class="col-md-4 col-lg-3 item-destinasi"
+                    data-nama="Pantai Tureloto"
+                    data-wilayah="Kabupaten Nias Utara">
+
+                    <div class="card card-destinasi h-100 shadow-sm">
+
+                        <img src="images/wisata/tureloto.jpg"
+                            class="card-img-top" alt="Pantai Tureloto">
+
+                        <div class="card-body">
+
+                            <span class="badge bg-info mb-2">Pantai</span>
+
+                            <h5>Pantai Tureloto</h5>
+
+                            <p class="text-muted">Kabupaten Nias Utara</p>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 24 -->
+                <div class="col-md-4 col-lg-3 item-destinasi"
+                    data-nama="Pantai Lafau"
+                    data-wilayah="Kabupaten Nias Utara">
+
+                    <div class="card card-destinasi h-100 shadow-sm">
+
+                        <img src="images/wisata/lafau.jpg"
+                            class="card-img-top" alt="Pantai Lafau">
+
+                        <div class="card-body">
+
+                            <span class="badge bg-info mb-2">Pantai</span>
+
+                            <h5>Pantai Lafau</h5>
+
+                            <p class="text-muted">Kabupaten Nias Utara</p>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 25 -->
+                <div class="col-md-4 col-lg-3 item-destinasi"
+                    data-nama="Pantai Sawakete"
+                    data-wilayah="Kabupaten Nias Utara">
+
+                    <div class="card card-destinasi h-100 shadow-sm">
+
+                        <img src="images/wisata/sawakete.jpg"
+                            class="card-img-top" alt="Pantai Sawakete">
+
+                        <div class="card-body">
+
+                            <span class="badge bg-info mb-2">Pantai</span>
+
+                            <h5>Pantai Sawakete</h5>
+
+                            <p class="text-muted">Kabupaten Nias Utara</p>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 26 -->
+                <div class="col-md-4 col-lg-3 item-destinasi"
+                    data-nama="Pantai Laosi"
+                    data-wilayah="Kabupaten Nias Utara">
+
+                    <div class="card card-destinasi h-100 shadow-sm">
+
+                        <img src="images/wisata/laosi.jpg"
+                            class="card-img-top" alt="Pantai Laosi">
+
+                        <div class="card-body">
+
+                            <span class="badge bg-success mb-2">Alam</span>
+
+                            <h5>Pantai Laosi</h5>
+
+                            <p class="text-muted">Kabupaten Nias Utara</p>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 27 -->
+                <div class="col-md-4 col-lg-3 item-destinasi"
+                    data-nama="Air Terjun Luaha Ndroi Hilimbowo"
+                    data-wilayah="Kabupaten Nias Utara">
+
+                    <div class="card card-destinasi h-100 shadow-sm">
+
+                        <img src="images/wisata/luaha ndroi.jpg"
+                            class="card-img-top" alt="Air Terjun Luaha Ndroi Hilimbowo">
+
+                        <div class="card-body">
+
+                            <span class="badge bg-success mb-2">Alam</span>
+
+                            <h5>Air Terjun Luaha Ndroi Hilimbowo</h5>
+
+                            <p class="text-muted">Kabupaten Nias Utara</p>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 28 -->
+                <div class="col-md-4 col-lg-3 item-destinasi"
+                    data-nama="Pulau Wunga"
+                    data-wilayah="Kabupaten Nias Utara">
+
+                    <div class="card card-destinasi h-100 shadow-sm">
+
+                        <img src="images/wisata/wunga.jpg"
+                            class="card-img-top" alt="Pulau Wunga">
+
+                        <div class="card-body">
+
+                            <span class="badge bg-info mb-2">Bahari</span>
+
+                            <h5>Pulau Wunga</h5>
+
+                            <p class="text-muted">Kabupaten Nias Utara</p>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- KABUPATEN NIAS BARAT -->
+        <div class="mb-5 bagian-wilayah">
+
+            <h3 class="fw-bold mb-3 wilayah-title">
+                Kabupaten Nias Barat
+            </h3>
+
+            <div class="row g-4">
+
+
+                <!-- 29 -->
+                <div class="col-md-4 col-lg-3 item-destinasi"
+                    data-nama="Pantai Sirombu"
+                    data-wilayah="Kabupaten Nias Barat">
+
+                    <div class="card card-destinasi h-100 shadow-sm">
+
+                        <img src="images/wisata/sirombu.jpg"
+                            class="card-img-top" alt="Pantai Sirombu">
+
+                        <div class="card-body">
+
+                            <span class="badge bg-info mb-2">Pantai</span>
+
+                            <h5>Pantai Sirombu</h5>
+
+                            <p class="text-muted">Kabupaten Nias Barat</p>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 30 -->
+                <div class="col-md-4 col-lg-3 item-destinasi"
+                    data-nama="Pulau Bawa"
+                    data-wilayah="Kabupaten Nias Barat">
+
+                    <div class="card card-destinasi h-100 shadow-sm">
+
+                        <img src="images/wisata/bawa.jpg"
+                            class="card-img-top" alt="Pulau Bawa">
+
+                        <div class="card-body">
+
+                            <span class="badge bg-success mb-2">Bahari</span>
+
+                            <h5>Pulau Bawa</h5>
+
+                            <p class="text-muted">Kabupaten Nias Barat</p>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 31 -->
+                <div class="col-md-4 col-lg-3 item-destinasi"
+                    data-nama="Pulau Hinako"
+                    data-wilayah="Kabupaten Nias Barat">
+
+                    <div class="card card-destinasi h-100 shadow-sm">
+
+                        <img src="images/wisata/hinako.jpg"
+                            class="card-img-top" alt="Pulau Hinako">
+
+                        <div class="card-body">
+
+                            <span class="badge bg-success mb-2">Bahari</span>
+
+                            <h5>Pulau Hinako</h5>
+
+                            <p class="text-muted">Kabupaten Nias Barat</p>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 32 -->
+                <div class="col-md-4 col-lg-3 item-destinasi"
+                    data-nama="Pulau Asu"
+                    data-wilayah="Kabupaten Nias Barat">
+
+                    <div class="card card-destinasi h-100 shadow-sm">
+
+                        <img src="images/wisata/asu.jpg"
+                            class="card-img-top" alt="Pulau Asu">
+
+                        <div class="card-body">
+
+                            <span class="badge bg-info mb-2">Bahari</span>
+
+                            <h5>Pulau Asu</h5>
+
+                            <p class="text-muted">Kabupaten Nias Barat</p>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- KATEGORI -->
+<section id="kategori" class="py-5 bg-white">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="text-primary fw-bold">
+                JELAJAHI NIAS
+            </span>
+
+            <h2 class="fw-bold mt-2">
+                Kategori Wisata
+            </h2>
+
+            <p class="text-secondary">
+                Pilih kategori wisata yang ingin Anda kenali.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <div class="col-lg-3 col-md-6">
+                <div class="card h-100 text-center border-0 shadow-sm p-4">
+
+                    <div class="display-4 mb-3">🏖️</div>
+
+                    <h5 class="fw-bold">Wisata Pantai</h5>
+
+                    <p class="text-secondary mb-0">
+                        Keindahan pesisir Nias.
+                    </p>
+
+                </div>
+            </div>
+
+
+            <div class="col-lg-3 col-md-6">
+                <div class="card h-100 text-center border-0 shadow-sm p-4">
+
+                    <div class="display-4 mb-3">🏡</div>
+
+                    <h5 class="fw-bold">Wisata Budaya</h5>
+
+                    <p class="text-secondary mb-0">
+                        Adat dan tradisi Nias.
+                    </p>
+
+                </div>
+            </div>
+
+
+            <div class="col-lg-3 col-md-6">
+                <div class="card h-100 text-center border-0 shadow-sm p-4">
+
+                    <div class="display-4 mb-3">🌴</div>
+
+                    <h5 class="fw-bold">Wisata Alam</h5>
+
+                    <p class="text-secondary mb-0">
+                        Keindahan alam Nias.
+                    </p>
+
+                </div>
+            </div>
+
+
+            <div class="col-lg-3 col-md-6">
+                <div class="card h-100 text-center border-0 shadow-sm p-4">
+
+                    <div class="display-4 mb-3">🏛️</div>
+
+                    <h5 class="fw-bold">Wisata Sejarah</h5>
+
+                    <p class="text-secondary mb-0">
+                        Sejarah dan peninggalan Nias.
+                    </p>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- WILAYAH -->
+<section id="wilayah" class="py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="text-primary fw-bold">
+                JELAJAHI KEPULAUAN NIAS
+            </span>
+
+            <h2 class="fw-bold mt-2">
+                Jelajahi Berdasarkan Wilayah
+            </h2>
+
+            <p class="text-secondary">
+                Kenali berbagai wilayah di Kepulauan Nias.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm p-4">
+
+                    <h5 class="fw-bold">Kota Gunungsitoli</h5>
+
+                    <p class="text-secondary">
+                        Wisata sejarah, budaya, dan kehidupan masyarakat perkotaan.
+                    </p>
+
+                    <span class="badge bg-primary align-self-start">
+                        Sumatera Utara
+                    </span>
+
+                </div>
+            </div>
+
+
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm p-4">
+
+                    <h5 class="fw-bold">Kabupaten Nias</h5>
+
+                    <p class="text-secondary">
+                        Keindahan alam dan potensi wisata Kabupaten Nias.
+                    </p>
+
+                    <span class="badge bg-primary align-self-start">
+                        Sumatera Utara
+                    </span>
+
+                </div>
+            </div>
+
+
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm p-4">
+
+                    <h5 class="fw-bold">Kabupaten Nias Selatan</h5>
+
+                    <p class="text-secondary">
+                        Wisata pantai, ombak selancar, dan budaya tradisional.
+                    </p>
+
+                    <span class="badge bg-primary align-self-start">
+                        Sumatera Utara
+                    </span>
+
+                </div>
+            </div>
+
+
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm p-4">
+
+                    <h5 class="fw-bold">Kabupaten Nias Utara</h5>
+
+                    <p class="text-secondary">
+                        Panorama pantai, laut, dan keindahan alam.
+                    </p>
+
+                    <span class="badge bg-primary align-self-start">
+                        Sumatera Utara
+                    </span>
+
+                </div>
+            </div>
+
+
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm p-4">
+
+                    <h5 class="fw-bold">Kabupaten Nias Barat</h5>
+
+                    <p class="text-secondary">
+                        Pesona pantai dan wisata bahari Nias Barat.
+                    </p>
+
+                    <span class="badge bg-primary align-self-start">
+                        Sumatera Utara
+                    </span>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- TENTANG -->
+<section id="tentang" class="py-5 bg-white">
+
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-6">
+
+                <img src="images/wisata/nias-about.jpg"
+                    alt="Keindahan Kepulauan Nias"
+                    class="img-fluid rounded-4 shadow">
+
+            </div>
+
+
+            <div class="col-lg-6">
+
+                <span class="text-primary fw-bold">
+                    TENTANG KAMI
+                </span>
+
+                <h2 class="fw-bold mt-2">
+                    Mengenal ExploreNias
+                </h2>
+
+                <p class="text-secondary">
+                    ExploreNias merupakan website informasi pariwisata
+                    yang bertujuan memperkenalkan berbagai destinasi
+                    wisata di Kepulauan Nias.
+                </p>
+
+                <p class="text-secondary">
+                    Melalui website ini, pengunjung dapat menemukan
+                    informasi mengenai wisata alam, pantai, budaya,
+                    dan sejarah yang tersebar di wilayah Kepulauan Nias.
+                </p>
+
+                <p class="text-secondary">
+                    ExploreNias diharapkan menjadi media informasi digital
+                    yang membantu masyarakat dan wisatawan mengenal
+                    potensi pariwisata Nias dengan lebih mudah.
+                </p>
+
+                <a href="#destinasi" class="btn btn-primary">
+                    Jelajahi Destinasi
+                </a>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- KONTAK -->
+<section id="kontak" class="py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="text-primary fw-bold">
+                HUBUNGI KAMI
+            </span>
+
+            <h2 class="fw-bold mt-2">
+                Kontak ExploreNias
+            </h2>
+
+            <p class="text-secondary">
+                Punya pertanyaan atau ingin berbagi informasi wisata?
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <div class="col-lg-5">
+
+                <div class="card border-0 shadow-sm h-100 p-4">
+
+                    <h4 class="fw-bold mb-3">
+                        Informasi Kontak
+                    </h4>
+
+                    <p class="text-secondary">
+                        Kami terbuka untuk menerima pertanyaan, saran,
+                        dan informasi mengenai pariwisata Kepulauan Nias.
+                    </p>
+
+                    <p>
+                        <strong>Lokasi:</strong><br>
+                        Kepulauan Nias, Sumatera Utara
+                    </p>
+
+                    <p>
+                        <strong>Email:</strong><br>
+                        Email ExploreNias
+                    </p>
+
+                    <p>
+                        <strong>Website:</strong><br>
+                        ExploreNias - Wisata Kepulauan Nias
+                    </p>
+
+                </div>
+            </div>
+
+
+            <div class="col-lg-7">
+
+                <div class="card border-0 shadow-sm p-4">
+
+                    <h4 class="fw-bold mb-3">
+                        Kirim Pesan
+                    </h4>
+
+                    <form id="contactForm">
+
+                        <div class="mb-3">
+
+                            <label for="nama" class="form-label">
+                                Nama Lengkap
+                            </label>
+
+                            <input type="text"
+                                class="form-control"
+                                id="nama"
+                                placeholder="Masukkan nama Anda"
+                                required>
+
+                        </div>
+
+
+                        <div class="mb-3">
+
+                            <label for="email" class="form-label">
+                                Email
+                            </label>
+
+                            <input type="email"
+                                class="form-control"
+                                id="email"
+                                placeholder="Masukkan email Anda"
+                                required>
+
+                        </div>
+
+
+                        <div class="mb-3">
+
+                            <label for="subjek" class="form-label">
+                                Subjek
+                            </label>
+
+                            <input type="text"
+                                class="form-control"
+                                id="subjek"
+                                placeholder="Masukkan subjek pesan"
+                                required>
+
+                        </div>
+
+
+                        <div class="mb-3">
+
+                            <label for="pesan" class="form-label">
+                                Pesan
+                            </label>
+
+                            <textarea class="form-control"
+                                id="pesan"
+                                rows="5"
+                                placeholder="Tuliskan pesan Anda"
+                                required></textarea>
+
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary">
+                            Kirim Pesan
+                        </button>
+
+                    </form>
+
+                    <div id="pesanKontak" class="mt-3"></div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="bg-primary text-white py-5">
+
+    <div class="container">
+
+        <div class="row g-4">
+
+            <div class="col-lg-4 col-md-6">
+
+                <h4 class="fw-bold">ExploreNias</h4>
+
+                <p>
+                    Website informasi pariwisata yang memperkenalkan
+                    keindahan alam, budaya, dan sejarah Kepulauan Nias.
+                </p>
+
+            </div>
+
+
+            <div class="col-lg-4 col-md-6">
+
+                <h5 class="fw-bold">Navigasi</h5>
+
+                <ul class="list-unstyled">
+
+                    <li class="mb-2">
+                        <a href="#beranda" class="text-white text-decoration-none">
+                            Beranda
+                        </a>
+                    </li>
+
+                    <li class="mb-2">
+                        <a href="#destinasi" class="text-white text-decoration-none">
+                            Destinasi
+                        </a>
+                    </li>
+
+                    <li class="mb-2">
+                        <a href="#kategori" class="text-white text-decoration-none">
+                            Kategori
+                        </a>
+                    </li>
+
+                    <li class="mb-2">
+                        <a href="#wilayah" class="text-white text-decoration-none">
+                            Wilayah
+                        </a>
+                    </li>
+
+                    <li class="mb-2">
+                        <a href="#tentang" class="text-white text-decoration-none">
+                            Tentang
+                        </a>
+                    </li>
+
+                    <li class="mb-2">
+                        <a href="#kontak" class="text-white text-decoration-none">
+                            Kontak
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div class="col-lg-4">
+
+                <h5 class="fw-bold">
+                    Jelajahi Kepulauan Nias
+                </h5>
+
+                <p class="mb-2">Kota Gunungsitoli</p>
+                <p class="mb-2">Kabupaten Nias</p>
+                <p class="mb-2">Kabupaten Nias Selatan</p>
+                <p class="mb-2">Kabupaten Nias Utara</p>
+                <p class="mb-2">Kabupaten Nias Barat</p>
+
+            </div>
+
+        </div>
+
+
+        <hr class="border-white">
+
+        <div class="text-center">
+
+            <p class="mb-1">
+                &copy; 2026 ExploreNias. Seluruh hak cipta dilindungi.
+            </p>
+
+            <small>
+                Jelajahi Keindahan Kepulauan Nias
+            </small>
+
+        </div>
+
+    </div>
+</footer>
+
+
+<!-- JAVASCRIPT BOOTSTRAP -->
+<script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+<!-- JAVASCRIPT PENCARIAN DAN FILTER -->
+<script>
+
+    // Mengambil elemen pencarian
+    const inputCari = document.getElementById("cariDestinasi");
+
+    const filterWilayah = document.getElementById("filterWilayah");
+
+    const kartuDestinasi = document.querySelectorAll(".item-destinasi");
+
+    const bagianWilayah = document.querySelectorAll(".bagian-wilayah");
+
+    const pesanHasil = document.getElementById("pesanHasil");
+
+    const jumlahDestinasi = document.getElementById("jumlahDestinasi");
+
+    const formPencarian = document.getElementById("formPencarian");
+
+    const resetPencarian = document.getElementById("resetPencarian");
+
+
+    // Fungsi pencarian destinasi
+    function cariDestinasi() {
+
+        const kataKunci = inputCari.value.toLowerCase().trim();
+
+        const wilayahDipilih = filterWilayah.value;
+
+        let jumlahDitemukan = 0;
+
+
+        // Memeriksa setiap kartu destinasi
+        kartuDestinasi.forEach(function(kartu) {
+
+            const nama = kartu.dataset.nama.toLowerCase();
+
+            const wilayah = kartu.dataset.wilayah;
+
+            const cocokNama = nama.includes(kataKunci);
+
+            const cocokWilayah =
+                wilayahDipilih === "" || wilayah === wilayahDipilih;
+
+
+            if (cocokNama && cocokWilayah) {
+
+                kartu.style.display = "";
+
+                jumlahDitemukan++;
+
+            } else {
+
+                kartu.style.display = "none";
+
+            }
+
+        });
+
+
+        // Menyembunyikan wilayah yang tidak memiliki hasil
+        bagianWilayah.forEach(function(bagian) {
+
+            const kartuTerlihat = bagian.querySelectorAll(
+                ".item-destinasi:not([style*='display: none'])"
+            );
+
+            bagian.style.display =
+                kartuTerlihat.length > 0 ? "" : "none";
+
+        });
+
+
+        // Memperbarui jumlah destinasi
+        jumlahDestinasi.textContent =
+            jumlahDitemukan + " Destinasi Wisata";
+
+
+        // Menampilkan pesan hasil pencarian
+        if (jumlahDitemukan === 0) {
+
+            pesanHasil.innerHTML =
+                '<p class="text-danger fw-semibold">' +
+                'Destinasi wisata tidak ditemukan.' +
+                '</p>';
+
+        } else {
+
+            pesanHasil.innerHTML =
+                '<p class="text-success fw-semibold">' +
+                'Ditemukan ' + jumlahDitemukan +
+                ' destinasi wisata.' +
+                '</p>';
+
+        }
+
+    }
+
+
+    // Pencarian langsung saat pengguna mengetik
+    inputCari.addEventListener("input", cariDestinasi);
+
+
+    // Filter berdasarkan wilayah
+    filterWilayah.addEventListener("change", cariDestinasi);
+
+
+    // Menangani tombol pencarian
+    formPencarian.addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        cariDestinasi();
+
+        document.getElementById("destinasi").scrollIntoView({
+            behavior: "smooth"
+        });
+
+    });
+
+
+    // Mengembalikan semua destinasi
+    resetPencarian.addEventListener("click", function() {
+
+        inputCari.value = "";
+
+        filterWilayah.value = "";
+
+        cariDestinasi();
+
+    });
+
+
+    // Menangani form kontak
+    document.getElementById("contactForm").addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+            document.getElementById("pesanKontak").innerHTML =
+                '<div class="alert alert-info">' +
+                'Form berhasil divalidasi. Pengiriman pesan belum aktif ' +
+                'karena website ini belum terhubung dengan layanan email.' +
+                '</div>';
+
+        }
+    );
+
+
+    // Menampilkan jumlah awal destinasi
+    cariDestinasi();
+
+</script>
+
+</body>
+</html>
